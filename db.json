@@ -1,0 +1,83 @@
+{
+  "bg": "https://cdn.wallpapersafari.com/45/88/QL10Vx.jpg",
+  "title": "Quiz CSS da Alura",
+  "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
+  "questions": [
+    {
+      "image": "https://1.bp.blogspot.com/-__U0s6yanJo/XOSjlidaAfI/AAAAAAAAKS8/opf-aTx1kEcG2O7_t5BLj2Nos7nCs1oQACLcBGAs/s1600/animationGOT.webp",
+      "title": "Quais as ordens que compõem a patrulha da noite?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "Patrulheiros, construtores e intendentes",
+        "Cavaleiros, construtores e meistres",
+        "Patrulheiros, ferreiros e instrutores",
+        "Cavaleiros, construtores e ferreiros"
+      ]
+    },
+    {
+      "image": "https://1.bp.blogspot.com/-a2oc_FlB6QI/XOSj-EhQhMI/AAAAAAAAKTg/61mC0io6tKEvNeM84uVy4NypVUqeCb6tACLcBGAs/s1600/giphy%2B%25285%2529.gif",
+      "title": "Quantos castelos a patrulha da noite tem para fazer a guarda da muralha e quais deles continuam ativos?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+        "21 castelos, permanecendo ativos apenas Fortenoite e Atalaialeste do Mar",
+        "5 castelos, e apenas Castelo Negro continua ativo",
+        "19 castelos, permanecendo ativos apenas Castelo Negro, Atalaialeste do Mar e Torre Sombria",
+        "9 castelos, permanecendo ativos Torre Sombria, Fortenoite e Solar das Trevas"
+      ]
+    },
+    {
+      "image": "https://3.bp.blogspot.com/-7bwR4aBtAhc/XOSj324q6OI/AAAAAAAAKTU/cJeD8axtOdI17Ng4vjuQTwfEmuWLUDA9ACLcBGAs/s1600/giphy%2B%25283%2529.gif",
+      "title": "Quando foi fundada a patrulha da noite? ",
+      "description": "",
+      "answer": 3,
+      "alternatives": [
+        "Há aproximadamente 300 anos, depois da conquista de Aegon Targaryen",
+        "Com a chegada dos Primeiros Homens",
+        "Com a chegada dos Ândalos",
+        "Há 8 mil anos, após a época conhecida como A Longa Noite"
+      ]
+    },
+    {
+      "image": "https://1.bp.blogspot.com/-gSsT3AirNgQ/XOSkBuni_dI/AAAAAAAAKTk/_pfBAzHC6RwveatBzUaSKD8W6cQ-BllagCLcBGAs/s1600/giphy.gif",
+      "title": "\"A Muralha foi feita para defender os reinos dos homens... e não contra outros homens, que é o que os selvagens são, se olharmos bem as coisas. Demasiados anos, Tarly, demasiadas centenas e milhares de anos. Perdemos de vista o verdadeiro inimigo. E agora ele está aqui, mas não sabemos como lutar contra ele.\" Quem disse isso para Samwell Tarly?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+        "Jon Snow",
+        "Meistre Aemon",
+        "Senhor Comandante Mormont",
+        "Grenn"
+      ]
+    },
+    {
+      "image": "https://3.bp.blogspot.com/-7bwR4aBtAhc/XOSj324q6OI/AAAAAAAAKTU/cJeD8axtOdI17Ng4vjuQTwfEmuWLUDA9ACLcBGAs/s1600/giphy%2B%25283%2529.gif",
+      "title": "Faz parte das terras da Patrulha uma região fértil para plantio de subsistência da ordem. Como ela é conhecida?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Graça",
+        "Dádiva",
+        "Regalo",
+        "Bonança"
+      ]
+    }
+  ],
+  "external": [
+    "https://aluraquiz-base.alura-challenges.vercel.app/",
+    "https://aluraquiz-css.omariosouto.vercel.app/",
+    "https://aluraquiz-devsoutinho.omariosouto.vercel.app/"
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#AFDAD4",
+      "secondary": "#A9D3DF",
+      "mainBg": "rgba(227,242,240,0.6)",
+      "contrastText": "#333",
+      "wrong": "#FF5722",
+      "success": "#4CAF50"
+    },
+    "borderRadius": "0px"
+  }
+}
