@@ -9,6 +9,7 @@ import QuizContainer from '../../src/components/QuizContainer';
 import Button from '../../src/components/Button';
 import AlternativesForm from '../../src/components/AlternativesForm';
 import BackLinkArrow from '../../src/components/BackLinkArrow';
+import Link from '../../src/components/Link';
 import { motion } from 'framer-motion';
 
 import loadingAnimation from '../../src/screens/Quiz/animation/loading.json';
@@ -34,14 +35,12 @@ function ResultWidget({ results }) {
       >
         <Widget.Header>
           <h1>
-            Resultado
+            <span style={{ textTransform: 'capitalize' }}>{name}</span>, aqui está seu resultado:
           </h1>
         </Widget.Header>
 
         <Widget.Content>
           <h1> 
-            Parabéns, {name}! 
-            <br /> <br />
             Você acertou
             {' '}
             {/*
@@ -66,6 +65,13 @@ function ResultWidget({ results }) {
               </li>
             ))}
           </ul>
+
+          <Button
+            type='button'
+            onClick={ () => router.push('/') }
+          >
+            Tentar novamente
+          </Button>
         </Widget.Content>
       </Widget>
     </>
