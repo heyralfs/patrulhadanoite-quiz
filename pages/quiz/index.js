@@ -120,13 +120,14 @@ function QuestionWidget({
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+
   const [exitTime, setExitTime] = React.useState(false);
   const [showAnimated, setShowAnimated] = React.useState(true);
 
   return (
     <Widget
       as={motion.section}
-      transition={ showAnimated ? { delay: 0.1, duration: 0.5 } : { delay: 0, duration: 0 } }
+      transition={ showAnimated ? { delay: 0.2, duration: 0.5 } : { delay: 0, duration: 0 } }
       variants={{
         show: {opacity: 1, x: '0'},
         hidden: {opacity: 0, x: '100%'},
@@ -187,7 +188,6 @@ function QuestionWidget({
               <Widget.Topic
                 as={motion.label}
                 transition={{ duration: 0.1 }}
-                whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 key={alternativeId}
                 htmlFor={alternativeId}
