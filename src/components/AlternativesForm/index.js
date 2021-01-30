@@ -8,14 +8,19 @@ const AlternativesForm = styled.form`
       
       &[data-status="SUCCESS"] {
         background-color: ${({ theme }) => theme.colors.success};
+        color: white;
       }
       &[data-status="ERROR"] {
         background-color: ${({ theme }) => theme.colors.wrong};
+        color: white;
       }
     }
     &:focus {
       opacity: 1;
     } 
+    &:hover {
+      margin-left: 3px;
+    }
   }
   button {
     margin-top: 24px;

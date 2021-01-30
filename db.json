@@ -75,8 +75,8 @@
       "secondary": "#A9D3DF",
       "mainBg": "rgba(227,242,240,0.6)",
       "contrastText": "#333",
-      "wrong": "#FF5722",
-      "success": "#4CAF50"
+      "wrong": "#9f1600",
+      "success": "#279f00"
     },
     "borderRadius": "0px"
   }

@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const LinkQuizes = styled.a`
   transition: all 200ms;
   &:hover{
-    transform: scale(1.1);
     background-color: ${({ theme }) => theme.colors.primary}
   }
 `

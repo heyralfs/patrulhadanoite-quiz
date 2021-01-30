@@ -11,6 +11,8 @@ import BackLinkArrow from '../../src/components/BackLinkArrow';
 import { motion } from 'framer-motion';
 
 import loadingAnimation from '../../src/screens/Quiz/animation/loading.json';
+import correctAnimation from '../../src/screens/Quiz/animation/correct.json';
+import incorrectAnimation from '../../src/screens/Quiz/animation/incorrect.json';
 
 function ResultWidget({ results }) {
 
@@ -115,6 +117,25 @@ function QuestionWidget({
   onSubmit,
   addResult,
 }) {
+
+  const defaultOptionsCorrect = {
+    loop: false,
+    autoplay: true,
+    animationData: correctAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
+  const defaultOptionsIncorrect = {
+    loop: false,
+    autoplay: true,
+    animationData: incorrectAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
   const [selectedAlternative, setSelectAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
   const questionId = `question__${questionIndex}`;
@@ -206,12 +227,14 @@ function QuestionWidget({
             );
           })}
 
-          <Button type="submit" disabled={!hasAlternativeSelected}>
-            Confirmar
-          </Button>
+          { !isQuestionSubmited &&
+            <Button type="submit" disabled={!hasAlternativeSelected}>
+              Confirmar
+            </Button>
+          }
 
-          { isQuestionSubmited && isCorrect && <p> Você acertou! </p> }
-          { isQuestionSubmited && !isCorrect && <p> Você errou! </p> }
+          { isQuestionSubmited && isCorrect && <Lottie options={defaultOptionsCorrect} height={50} width={50} margin-top='20px' /> }
+          { isQuestionSubmited && !isCorrect && <Lottie options={defaultOptionsIncorrect} height={50} width={50} margin-top='20px' /> }
 
         </AlternativesForm>
       </Widget.Content>
