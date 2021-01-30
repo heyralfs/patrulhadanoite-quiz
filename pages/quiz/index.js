@@ -1,4 +1,5 @@
 import React from 'react';
+import Lottie from 'react-lottie';
 import db from '../../db.json';
 import Widget from '../../src/components/Widget';
 import QuizLogo from '../../src/components/QuizLogo';
@@ -8,6 +9,8 @@ import Button from '../../src/components/Button';
 import AlternativesForm from '../../src/components/AlternativesForm';
 import BackLinkArrow from '../../src/components/BackLinkArrow';
 import { motion } from 'framer-motion';
+
+import loadingAnimation from '../../src/screens/Quiz/animation/loading.json';
 
 function ResultWidget({ results }) {
   return (
@@ -52,15 +55,27 @@ function ResultWidget({ results }) {
 }
 
 function LoadingWidget() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loadingAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
   return (
     <>
       <Widget>
         <Widget.Header>
           Carregando...
         </Widget.Header>
-
+            
         <Widget.Content>
-          [Desafio do Loading]
+        <Lottie 
+          options={defaultOptions}
+          height={200}
+          width={200}
+        />
         </Widget.Content>
       </Widget>
     </>
@@ -81,7 +96,16 @@ function QuestionWidget({
   const hasAlternativeSelected = selectedAlternative !== undefined;
 
   return (
-    <Widget>
+    <Widget
+      as={motion.section}
+      transition={{ delay: 0.1, duration: 0.5 }}
+      variants={{
+        show: {opacity: 1, x: '0'},
+        hidden: {opacity: 0, x: '100%'}
+      }}
+      initial="hidden"
+      animate="show"
+    >
       <Widget.Header>
         <BackLinkArrow href="/" />
         <h3>
@@ -189,7 +213,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 3 * 900);
 
   }, []);
 

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const FooterWrapper = styled.footer`
   background-color: #00000070;
+  backdrop-filter: blur(5px);
   padding: 20px;
   display: flex;
   align-items: center;
@@ -9,6 +10,9 @@ const FooterWrapper = styled.footer`
   img {
     width: 58px;
     margin-right: 23px;
+  }
+  p {
+    color: #ccc
   }
   a {
     color: white;
