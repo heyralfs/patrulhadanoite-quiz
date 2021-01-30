@@ -95,7 +95,7 @@ export default function Home() {
         </Widget>
         <Footer />
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/heyralfs" />
+      <GitHubCorner projectUrl="https://github.com/heyralfs/patrulhadanoite-quiz" />
     </QuizBackground>
   );
 }
