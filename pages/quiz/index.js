@@ -1,5 +1,6 @@
 import React from 'react';
 import Lottie from 'react-lottie';
+import { useRouter } from 'next/router';
 import db from '../../db.json';
 import Widget from '../../src/components/Widget';
 import QuizLogo from '../../src/components/QuizLogo';
@@ -15,6 +16,9 @@ import correctAnimation from '../../src/screens/Quiz/animation/correct.json';
 import incorrectAnimation from '../../src/screens/Quiz/animation/incorrect.json';
 
 function ResultWidget({ results }) {
+
+  const router = useRouter();
+  const name = router.query.name;
 
   return (
     <>
@@ -36,6 +40,8 @@ function ResultWidget({ results }) {
 
         <Widget.Content>
           <h1> 
+            Parabéns, {name}! 
+            <br /> <br />
             Você acertou
             {' '}
             {/*
@@ -148,7 +154,7 @@ function QuestionWidget({
   return (
     <Widget
       as={motion.section}
-      transition={ showAnimated ? { delay: 0.2, duration: 0.5 } : { delay: 0, duration: 0 } }
+      transition={ showAnimated ? { delay: 0.1, duration: 0.5 } : { delay: 0, duration: 0 } }
       variants={{
         show: {opacity: 1, x: '0'},
         hidden: {opacity: 0, x: '100%'},
@@ -198,7 +204,7 @@ function QuestionWidget({
               setShowAnimated(false);
               setExitTime(false);
               setShowAnimated(true);
-            }, 2.6 * 1000);
+            }, 2.8 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
