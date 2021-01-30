@@ -4,6 +4,7 @@ const AlternativesForm = styled.form`
   label {
     &[data-selected="true"] {
       background-color: ${({ theme }) => theme.colors.primary};
+      font-weight: 600;
       
       &[data-status="SUCCESS"] {
         background-color: ${({ theme }) => theme.colors.success};

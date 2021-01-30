@@ -13,9 +13,19 @@ import { motion } from 'framer-motion';
 import loadingAnimation from '../../src/screens/Quiz/animation/loading.json';
 
 function ResultWidget({ results }) {
+
   return (
     <>
-      <Widget>
+      <Widget
+        as={motion.section}
+        transition={{ delay: 0.1, duration: 0.5 }}
+        variants={{
+          hidden: { opacity: 0, scale: 0 },
+          show: { opacity: 1, scale: 1 }
+        }}
+        initial='hidden'
+        animate='show'      
+      >
         <Widget.Header>
           <h1>
             Resultado
@@ -55,6 +65,13 @@ function ResultWidget({ results }) {
 }
 
 function LoadingWidget() {
+
+  const [exitTime, setExitTime] = React.useState(false);
+
+  setTimeout( ()=>{
+    setExitTime(true)
+  }, 2.2 * 1000)
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -65,17 +82,26 @@ function LoadingWidget() {
   };
   return (
     <>
-      <Widget>
+      <Widget
+        as={motion.section}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        variants={{
+          show: {opacity: 1, scale: 1},
+          hidden: {opacity: 0, scale: 0},
+        }}
+        initial="hidden"
+        animate={exitTime ? 'hidden' : 'show'}
+      >
         <Widget.Header>
           Carregando...
         </Widget.Header>
             
-        <Widget.Content>
-        <Lottie 
-          options={defaultOptions}
-          height={200}
-          width={200}
-        />
+        <Widget.Content style={ {minHeight: '50vh'} }>
+          <Lottie 
+            options={defaultOptions}
+            height={200}
+            width={200}
+          />
         </Widget.Content>
       </Widget>
     </>
@@ -94,17 +120,22 @@ function QuestionWidget({
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+  const [exitTime, setExitTime] = React.useState(false);
+  const [showAnimated, setShowAnimated] = React.useState(true);
 
   return (
     <Widget
       as={motion.section}
-      transition={{ delay: 0.1, duration: 0.5 }}
+      transition={ showAnimated ? { delay: 0.1, duration: 0.5 } : { delay: 0, duration: 0 } }
       variants={{
         show: {opacity: 1, x: '0'},
-        hidden: {opacity: 0, x: '100%'}
+        hidden: {opacity: 0, x: '100%'},
+        exit: {opacity: 0, x: '-100%'}
       }}
       initial="hidden"
-      animate="show"
+      animate={
+        exitTime ? ( showAnimated ? 'exit' : 'hidden' ) : ( showAnimated ? 'show' : '')
+      }
     >
       <Widget.Header>
         <BackLinkArrow href="/" />
@@ -135,11 +166,17 @@ function QuestionWidget({
             e.preventDefault();
             setIsQuestionSubmited(true);
             setTimeout( () => {
+              setExitTime(true);
+            }, 2 * 1000);
+            setTimeout( () => {
               addResult(isCorrect);
               onSubmit();
               setIsQuestionSubmited(false);
               setSelectAlternative(undefined);
-            }, 2 * 1000);
+              setShowAnimated(false);
+              setExitTime(false);
+              setShowAnimated(true);
+            }, 2.6 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
@@ -149,6 +186,7 @@ function QuestionWidget({
             return (
               <Widget.Topic
                 as={motion.label}
+                transition={{ duration: 0.1 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 key={alternativeId}

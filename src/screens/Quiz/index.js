@@ -138,7 +138,10 @@ function QuestionWidget({
             const isSelected = selectedAlternative === alternativeIndex;
             return (
               <Widget.Topic
-                as="label"
+                as={motion.label}
+                transition={{ duration: 0.1 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 key={alternativeId}
                 htmlFor={alternativeId}
                 data-selected={isSelected}
