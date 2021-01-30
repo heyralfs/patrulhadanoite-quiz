@@ -73,7 +73,7 @@
     "colors": {
       "primary": "#AFDAD4",
       "secondary": "#A9D3DF",
-      "mainBg": "rgba(227,242,240,0.6)",
+      "mainBg": "rgba(227,242,240,1)",
       "contrastText": "#333",
       "wrong": "#9f1600",
       "success": "#279f00"
