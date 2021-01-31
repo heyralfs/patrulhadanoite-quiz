@@ -51,7 +51,7 @@ export default function Home() {
               >
                 <Input
                   name="nomeDoUsuario"
-                  onChange={ (e) => setName(e.target.value) }
+                  onChange={ (e) => {setName(e.target.value)} }
                   placeholder="Digite seu nome para jogar" 
                   value={name}
                 />
