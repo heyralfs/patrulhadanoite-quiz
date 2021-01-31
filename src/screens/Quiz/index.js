@@ -15,7 +15,7 @@ import loadingAnimation from './animation/loading.json';
 import correctAnimation from './animation/correct.json';
 import incorrectAnimation from './animation/incorrect.json';
 
-function ResultWidget({ results }) {
+function ResultWidget({ results, db }) {
 
   const router = useRouter();
   const name = router.query.name;
@@ -58,9 +58,18 @@ function ResultWidget({ results }) {
           <ul>
             { results.map( (result, index) => (
               <li key={`result__${index}`}>
-                <p>
-                  #{index + 1} Resultado: {result === true ? 'Acertou' : 'Errou'}
-                </p>
+                { result === true && 
+                  <p style={{ color: `${db.theme.colors.success}` }}> 
+                  #{index + 1} Resultado: Acertou
+                  </p>
+                }
+
+                { result !== true && 
+                  <p style={{ color: `${db.theme.colors.wrong}` }}>
+                    #{index + 1} Resultado: Errou
+                  </p>
+                }
+
               </li>
             ))}
           </ul>
@@ -314,7 +323,7 @@ export default function QuizPage({ db }) {
 
         { screenState === screenStates.LOADING && <LoadingWidget /> }
 
-        { screenState === screenStates.RESULT && <ResultWidget results={results} /> }
+        { screenState === screenStates.RESULT && <ResultWidget results={results} db={db} /> }
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/heyralfs/patrulhadanoite-quiz" />
     </QuizBackground>
