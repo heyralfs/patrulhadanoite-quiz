@@ -98,7 +98,7 @@ function LoadingWidget() {
     <>
       <Widget
         as={motion.section}
-        transition={{ delay: 0.2, duration: 0.5 }}
+        transition={{ delay: 0.2, duration: 0.2 }}
         variants={{
           show: {opacity: 1, scale: 1},
           hidden: {opacity: 0, scale: 0},
@@ -214,7 +214,7 @@ function QuestionWidget({
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
-            const alternativeId = `alternative__${alternativeIndex}`;
+            const alternativeId = `alternative__${alternativeIndex}-${questionIndex}`;
             const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
             const isSelected = selectedAlternative === alternativeIndex;
             return (
