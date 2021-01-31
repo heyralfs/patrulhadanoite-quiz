@@ -10,6 +10,7 @@ import BackLinkArrow from '../../components/BackLinkArrow';
 import { motion } from 'framer-motion';
 import GitHubCorner from '../../components/GitHubCorner';
 import { useRouter } from 'next/router';
+import Confetti from 'react-confetti';
 
 import loadingAnimation from './animation/loading.json';
 import correctAnimation from './animation/correct.json';
@@ -20,8 +21,14 @@ function ResultWidget({ results, db }) {
   const router = useRouter();
   const name = router.query.name;
 
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
   return (
     <>
+      { results.filter((x) => x).length > 2 &&
+        <Confetti width={windowWidth} height={windowHeight} recycle={false} />
+      }
       <Widget
        as={motion.section}
        transition={{ delay: 0.1, duration: 0.5 }}
