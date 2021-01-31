@@ -8,6 +8,7 @@ import QuizContainer from '../../components/QuizContainer';
 import Button from '../../components/Button';
 import AlternativesForm from '../../components/AlternativesForm';
 import BackLinkArrow from '../../components/BackLinkArrow';
+import { motion } from 'framer-motion';
 
 import loadingAnimation from './animation/loading.json';
 
