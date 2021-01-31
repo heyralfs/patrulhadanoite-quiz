@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import db from '../db.json';
 import Widget from '../src/components/Widget';
@@ -25,43 +24,41 @@ export default function Home() {
       <QuizContainer>
         <QuizLogo />
 
-        <AnimatePresence>
-          <Widget
-            as={motion.section}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            variants={{
-              show: {opacity: 1, x: '0'},
-              hidden: {opacity: 0, x: '100%'},
-              exit: {opacity: 0, x: '-100%'}
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          variants={{
+            show: {opacity: 1, x: '0'},
+            hidden: {opacity: 0, x: '100%'},
+            exit: {opacity: 0, x: '-100%'}
+          }}
+          initial="hidden"
+          animate={exitTime ? 'exit' : 'show'}
+        >
+          <Widget.Header>
+            <h1>Patrulha da Noite - O Quiz</h1>
+          </Widget.Header>
+          <Widget.Content>
+            <form onSubmit={ (e) => {
+              e.preventDefault();
+              setExitTime(true);
+              setTimeout( ()=>{
+                router.push(`/quiz?name=${name}`);
+              }, 1 * 1000)
             }}
-            initial="hidden"
-            animate={exitTime ? 'exit' : 'show'}
-          >
-            <Widget.Header>
-              <h1>Patrulha da Noite - O Quiz</h1>
-            </Widget.Header>
-            <Widget.Content>
-              <form onSubmit={ (e) => {
-                e.preventDefault();
-                setExitTime(true);
-                setTimeout( ()=>{
-                  router.push(`/quiz?name=${name}`);
-                }, 1 * 1000)
-              }}
-              >
-                <Input
-                  name="nomeDoUsuario"
-                  onChange={ (e) => {setName(e.target.value)} }
-                  placeholder="Digite seu nome para jogar" 
-                  value={name}
-                />
-                <Button type="submit" disabled={name.length === 0}>
-                  Jogar
-                </Button>
-              </form>
-            </Widget.Content>
-          </Widget>
-        </AnimatePresence>
+            >
+              <Input
+                name="nomeDoUsuario"
+                onChange={ (e) => {setName(e.target.value)} }
+                placeholder="Digite seu nome para jogar" 
+                value={name}
+              />
+              <Button type="submit" disabled={name.length === 0}>
+                Jogar
+              </Button>
+            </form>
+          </Widget.Content>
+        </Widget>
 
         <Widget
           as={motion.section}
