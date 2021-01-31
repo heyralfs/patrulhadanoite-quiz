@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
   }
   html, body {
     min-height: 100vh;
+    overflow-x: hidden;
   }
   #__next {
     flex: 1;
