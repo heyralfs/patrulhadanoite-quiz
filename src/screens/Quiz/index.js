@@ -1,6 +1,5 @@
 import React from 'react';
 import Lottie from 'react-lottie';
-import db from '../../../db.json';
 import Widget from '../../components/Widget';
 import QuizLogo from '../../components/QuizLogo';
 import QuizBackground from '../../components/QuizBackground';
@@ -9,10 +8,18 @@ import Button from '../../components/Button';
 import AlternativesForm from '../../components/AlternativesForm';
 import BackLinkArrow from '../../components/BackLinkArrow';
 import { motion } from 'framer-motion';
+import GitHubCorner from '../../components/GitHubCorner';
+import { useRouter } from 'next/router';
 
 import loadingAnimation from './animation/loading.json';
+import correctAnimation from './animation/correct.json';
+import incorrectAnimation from './animation/incorrect.json';
 
 function ResultWidget({ results }) {
+
+  const router = useRouter();
+  const name = router.query.name;
+
   return (
     <>
       <Widget
@@ -27,7 +34,7 @@ function ResultWidget({ results }) {
       >
         <Widget.Header>
           <h1>
-            Resultado
+            <span style={{ textTransform: 'capitalize' }}>{name}</span>, aqui está seu resultado:
           </h1>
         </Widget.Header>
 
@@ -57,6 +64,13 @@ function ResultWidget({ results }) {
               </li>
             ))}
           </ul>
+
+          <Button
+            type='button'
+            onClick={ () => router.push('/') }
+          >
+            Tentar novamente
+          </Button>
         </Widget.Content>
       </Widget>
     </>
@@ -114,6 +128,25 @@ function QuestionWidget({
   onSubmit,
   addResult,
 }) {
+
+  const defaultOptionsCorrect = {
+    loop: false,
+    autoplay: true,
+    animationData: correctAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
+  const defaultOptionsIncorrect = {
+    loop: false,
+    autoplay: true,
+    animationData: incorrectAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
   const [selectedAlternative, setSelectAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
   const questionId = `question__${questionIndex}`;
@@ -176,7 +209,7 @@ function QuestionWidget({
               setShowAnimated(false);
               setExitTime(false);
               setShowAnimated(true);
-            }, 2.6 * 1000);
+            }, 2.8 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
@@ -205,12 +238,14 @@ function QuestionWidget({
             );
           })}
 
-          <Button type="submit" disabled={!hasAlternativeSelected}>
-            Confirmar
-          </Button>
+          { !isQuestionSubmited &&
+            <Button type="submit" disabled={!hasAlternativeSelected}>
+              Confirmar
+            </Button>
+          }
 
-          { isQuestionSubmited && isCorrect && <p> Você acertou! </p> }
-          { isQuestionSubmited && !isCorrect && <p> Você errou! </p> }
+          { isQuestionSubmited && isCorrect && <Lottie options={defaultOptionsCorrect} height={50} width={50} margin-top='20px' /> }
+          { isQuestionSubmited && !isCorrect && <Lottie options={defaultOptionsIncorrect} height={50} width={50} margin-top='20px' /> }
 
         </AlternativesForm>
       </Widget.Content>
@@ -225,14 +260,14 @@ const screenStates = {
 };
 
 
-export default function QuizPage({ externalQuestions, externalBg }) {
+export default function QuizPage({ db }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
-  const totalQuestions = externalQuestions.length;
+  const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
-  const question = externalQuestions[questionIndex];
-  const bg = externalBg;
+  const question = db.questions[questionIndex];
+  const bg = db.bg;
 
   function addResult(result) {
     setResults([
@@ -281,6 +316,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
 
         { screenState === screenStates.RESULT && <ResultWidget results={results} /> }
       </QuizContainer>
+      <GitHubCorner projectUrl="https://github.com/heyralfs/patrulhadanoite-quiz" />
     </QuizBackground>
   );
 }
